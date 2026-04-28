@@ -21,15 +21,53 @@ public class QueueArray_2311533016 {
     }
 
     void enqueue(int item) {
-        if (isFull(this)) {
-            System.out.println("Queue penuh");
+        if (isFull(this))
             return;
-        }
 
         this.rear = (this.rear + 1) % this.capacity;
         this.array[this.rear] = item;
         this.size = this.size + 1;
 
-        System.out.println(item + " masuk ke queue");
+        System.out.println(item + " enqueued to queue");
+    }
+
+    int dequeue() {
+        if (isEmpty(this))
+            return Integer.MIN_VALUE;
+
+        int item = this.array[this.front];
+        this.front = (this.front + 1) % this.capacity;
+        this.size = this.size - 1;
+
+        return item;
+    }
+
+    int front() {
+        if (isEmpty(this))
+            return Integer.MIN_VALUE;
+
+        return this.array[this.front];
+    }
+
+    int rear() {
+        if (isEmpty(this))
+            return Integer.MIN_VALUE;
+
+        return this.array[this.rear];
+    }
+
+    // mencetak elemen antrian
+    void display() {
+        int i;
+        if (front == rear) {
+            System.out.printf("\nAntrian Kosong\n");
+            return;
+        }
+
+        // kunjungi dari belakang dan cetak
+        for (i = front; i < rear; i++) {
+            System.out.printf(" %d <-- ", array[i]);
+        }
+        return;
     }
 }

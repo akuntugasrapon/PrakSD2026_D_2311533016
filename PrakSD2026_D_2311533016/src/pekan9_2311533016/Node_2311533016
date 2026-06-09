@@ -1,0 +1,75 @@
+package pekan9_2311533016;
+
+public class Node_2311533016 {
+
+    private int data;
+    private Node_2311533016 left;
+    private Node_2311533016 right;
+
+    public Node_2311533016(int data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+
+    public int getData() {
+        return data;
+    }
+
+    public Node_2311533016 getLeft() {
+        return left;
+    }
+
+    public Node_2311533016 getRight() {
+        return right;
+    }
+
+    public void setLeft(Node_2311533016 left) {
+        this.left = left;
+    }
+
+    public void setRight(Node_2311533016 right) {
+        this.right = right;
+    }
+
+    public void printInOrder(Node_2311533016 node) {
+        if (node != null) {
+            printInOrder(node.left);
+            System.out.print(node.data + " ");
+            printInOrder(node.right);
+        }
+    }
+
+    public void printPreOrder(Node_2311533016 node) {
+        if (node != null) {
+            System.out.print(node.data + " ");
+            printPreOrder(node.left);
+            printPreOrder(node.right);
+        }
+    }
+
+    public void printPostOrder(Node_2311533016 node) {
+        if (node != null) {
+            printPostOrder(node.left);
+            printPostOrder(node.right);
+            System.out.print(node.data + " ");
+        }
+    }
+
+    public void print() {
+        print("", true);
+    }
+
+    private void print(String prefix, boolean isTail) {
+
+        if (right != null) {
+            right.print(prefix + (isTail ? "│   " : "    "), false);
+        }
+
+        System.out.println(prefix + (isTail ? "└── " : "┌── ") + data);
+
+        if (left != null) {
+            left.print(prefix + (isTail ? "    " : "│   "), true);
+        }
+    }
+}

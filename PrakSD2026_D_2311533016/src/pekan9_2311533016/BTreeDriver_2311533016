@@ -1,0 +1,59 @@
+package pekan9_2311533016;
+
+public class BTreeDriver_2311533016 {
+
+    public static void main(String[] args) {
+
+        BTree_2311533016 tree = new BTree_2311533016();
+
+        System.out.print("Jumlah simpul awal pohon: ");
+        System.out.println(tree.countNodes());
+
+        Node_2311533016 root = new Node_2311533016(1);
+
+        tree.setRoot(root);
+
+        System.out.println("Jumlah simpul jika hanya ada root");
+        System.out.println(tree.countNodes());
+
+        Node_2311533016 node2 = new Node_2311533016(2);
+        Node_2311533016 node3 = new Node_2311533016(3);
+        Node_2311533016 node4 = new Node_2311533016(4);
+        Node_2311533016 node5 = new Node_2311533016(5);
+        Node_2311533016 node6 = new Node_2311533016(6);
+        Node_2311533016 node7 = new Node_2311533016(7);
+        Node_2311533016 node8 = new Node_2311533016(8);
+        Node_2311533016 node9 = new Node_2311533016(9);
+
+        root.setLeft(node2);
+        root.setRight(node3);
+
+        node2.setLeft(node4);
+        node2.setRight(node5);
+
+        node4.setRight(node8);
+
+        node3.setLeft(node6);
+        node3.setRight(node7);
+
+        node6.setLeft(node9);
+
+        System.out.println("\nmenampilkan simpul terakhir:");
+        System.out.println(root.getData());
+
+        System.out.println("\nJumlah simpul setelah simpul 7 ditambahkan");
+        System.out.println(tree.countNodes());
+
+        System.out.println("\nInOrder:");
+        tree.printInOrder();
+
+        System.out.println("\n\nPreOrder:");
+        tree.printPreOrder();
+
+        System.out.println("\n\nPostOrder:");
+        tree.printPostOrder();
+
+        System.out.println("\n\nMenampilkan simpul dalam bentuk pohon");
+        tree.print();
+    }
+}

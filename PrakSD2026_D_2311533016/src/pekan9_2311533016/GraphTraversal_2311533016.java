@@ -21,9 +21,7 @@ public class GraphTraversal_2311533016 {
 
         for (String node : graph.keySet()) {
             System.out.print(node + " -> ");
-
             List<String> neighbors = graph.get(node);
-
             System.out.println(String.join(", ", neighbors));
         }
 
@@ -35,14 +33,11 @@ public class GraphTraversal_2311533016 {
         Set<String> visited = new HashSet<>();
 
         System.out.println("Penelusuran DFS:");
-
         dfsHelper(start, visited);
-
         System.out.println();
     }
 
-    private void dfsHelper(String current,
-                           Set<String> visited) {
+    private void dfsHelper(String current, Set<String> visited) {
 
         if (visited.contains(current))
             return;
@@ -51,28 +46,60 @@ public class GraphTraversal_2311533016 {
 
         System.out.print(current + " ");
 
-        for (String neighbor :
-                graph.getOrDefault(current,
-                        new ArrayList<>())) {
-
+        for (String neighbor : graph.getOrDefault(current, new ArrayList<>())) {
             dfsHelper(neighbor, visited);
         }
     }
 
+    // BFS iteratif
+    public void bfs(String start) {
+
+        Set<String> visited = new HashSet<>();
+        Queue<String> queue = new LinkedList<>();
+
+        queue.add(start);
+        visited.add(start);
+
+        System.out.println("Penelusuran BFS:");
+
+        while (!queue.isEmpty()) {
+
+            String current = queue.poll();
+
+            System.out.print(current + " ");
+
+            for (String neighbor : graph.getOrDefault(current, new ArrayList<>())) {
+
+                if (!visited.contains(neighbor)) {
+                    queue.add(neighbor);
+                    visited.add(neighbor);
+                }
+            }
+        }
+
+        System.out.println();
+    }
+
+    // Main
     public static void main(String[] args) {
 
         GraphTraversal_2311533016 graph =
                 new GraphTraversal_2311533016();
 
+        // Contoh graf:
+        // A-B, A-C, B-D, B-E
+
         graph.addEdge("A", "B");
         graph.addEdge("A", "C");
         graph.addEdge("B", "D");
         graph.addEdge("B", "E");
-        graph.addEdge("C", "F");
-        graph.addEdge("E", "F");
 
+        // Cetak graf awal
+        System.out.println("Graf Awal adalah:");
         graph.printGraph();
 
+        // Lakukan penelusuran
         graph.dfs("A");
+        graph.bfs("A");
     }
 }
